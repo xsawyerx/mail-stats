@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+# tutorial version:
+# available at: https://github.com/xsawyerx/mail-stats/tree/tutorial
 use warnings;
 use strict;
 use v5.10;
