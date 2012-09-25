@@ -51,7 +51,7 @@ my $dir = tempdir( CLEANUP => 1 );
 
 # the file we create for use to get the files of the archives we need to make stats of.
 
-html {
+sub html {
 	getstore("$url", "$dir/mail.txt") or die "Unable to get page: $!";
 
 	open my $html, "<", "$dir/mail.txt" or die "can't open mail.txt: $! ";
@@ -70,7 +70,7 @@ html {
 	close $html or die "can't close mail.txt: $! ";
 }
 
-down {
+sub down {
 	# downloading the needed files and extracting them.
 
 	for ( @files ) {
@@ -79,7 +79,7 @@ down {
 	system("gzip -d $dir/*.gz");
 }
 
-merge {
+sub merge {
 	my @file;
 	# reading the files.
 
@@ -104,7 +104,7 @@ merge {
 	close $FILE05 or die "can't close file: $! ";
 }
 
-var {
+sub var {
 	# reading the file to populate the variables for the stats.
 
 	open my $FI05, "<", "$dir$file" or die "can't open file $file: $! ";
@@ -128,7 +128,7 @@ var {
 	}
 }
 
-stats {
+sub stats {
 	my @sort = sort { $a <=> $b } ( values %names );
 
 	my $n = @names;
